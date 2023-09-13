@@ -1,21 +1,47 @@
-﻿Console.WriteLine("Willkommen beim Taschenrechner 3000");
-bool checkParse1 = false;
-bool checkParse2 = false;
-int num1 = 0;
-int num2 = 0;
-
-while (!checkParse1 || !checkParse2)
+﻿int GetNumber()
 {
-    Console.WriteLine("Bitte gebe Zahl 1 an:");
-    string input1 = Console.ReadLine();
+    int num = 0;
+    bool checkParse = false;
+    do
+    {
+        Console.WriteLine("Bitte gebe eine Zahl an:");
+        string input = Console.ReadLine();
+        checkParse = int.TryParse(input, out num);
 
-    Console.WriteLine("Bitte gebe Zahl 2 an:");
-    string input2 = Console.ReadLine();
-
-    // Konvertierung von Text zu Zahlen
-    checkParse1 = int.TryParse(input1, out num1);
-    checkParse2 = int.TryParse(input2, out num2);
+        if (checkParse == false)
+        {
+            Console.WriteLine("Ungültige Eingabe: Nur Ganzzahlen sind erlaubt");
+        }
+    } while (checkParse == false);
+    return num;
 }
 
-var sum = num1 + num2;
-Console.WriteLine($"{num1} + {num2} = {sum}");
+int GetOperation(int number1, int number2)
+{
+    var mathoperator = "";
+    Console.WriteLine("Bitte einen Operator ( +, -, *, / ) angeben");
+    mathoperator = Console.ReadLine();
+    while (mathoperator != "+" && mathoperator != "-" && mathoperator != "*" && mathoperator!= "/")
+    {
+        Console.WriteLine("Operator ungültig. Bitte einen gültigen angeben: +, -, *, /");
+    }
+    switch(mathoperator)
+    {
+        case "+":
+            return number1 + number2;
+        case "-":
+            return number1 - number2;   
+        case "*":
+            return number1 * number2;
+        case "/":
+            return number1 / number2;
+    }
+
+}
+
+Console.WriteLine("Willkommen beim Taschenrechner 3000");
+var num1 = GetNumber();
+var num2 = GetNumber();
+var operation = GetOperation(num1, num2);
+var sum = num1, operation, num2;
+Console.WriteLine($"{num1} {operation} {num2} = {sum}");
