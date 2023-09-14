@@ -1,4 +1,6 @@
-﻿int GetNumber()
+﻿using System.Numerics;
+
+int GetNumber()
 {
     int num = 0;
     bool checkParse = false;
@@ -16,32 +18,54 @@
     return num;
 }
 
-int GetOperation(int number1, int number2)
+string GetOperator()
 {
-    var mathoperator = "";
-    Console.WriteLine("Bitte einen Operator ( +, -, *, / ) angeben");
-    mathoperator = Console.ReadLine();
-    while (mathoperator != "+" && mathoperator != "-" && mathoperator != "*" && mathoperator!= "/")
+    string mathoperator;
+    bool validOperation;
+
+    do
     {
-        Console.WriteLine("Operator ungültig. Bitte einen gültigen angeben: +, -, *, /");
-    }
-    switch(mathoperator)
+        Console.WriteLine("Wähle eine Operation ( + - * / ):");
+        mathoperator = Console.ReadLine();
+
+        validOperation = mathoperator == "+" || mathoperator == "-" || mathoperator == "*" || mathoperator == "/";
+
+        if (validOperation == false)
+        {
+            Console.WriteLine("Ungültige Operation, versuche es erneut.");
+        }
+    } while (validOperation == false);
+
+    return mathoperator;
+}
+
+int Calculate(int num1, int num2, string mathoperator)
+{
+    switch (mathoperator)
     {
         case "+":
-            return number1 + number2;
+            return num1 + num2;
         case "-":
-            return number1 - number2;   
+            return num1 - num2;
         case "*":
-            return number1 * number2;
+            return num1 * num2;
         case "/":
-            return number1 / number2;
+            if (num2 == 0)
+            {
+                Console.WriteLine("Durch 0 kann nicht geteilt werden");
+                break;
+            }
+            return num1 / num2;
+        default:
+            Console.WriteLine("Fehlerhafte Eingabe, mögliche Werte: + - * /");
+            return 0;
     }
-
 }
 
 Console.WriteLine("Willkommen beim Taschenrechner 3000");
 var num1 = GetNumber();
 var num2 = GetNumber();
-var operation = GetOperation(num1, num2);
-var sum = num1, operation, num2;
-Console.WriteLine($"{num1} {operation} {num2} = {sum}");
+var operation = GetOperator();
+
+var result = Calculate(num1, num2, operation);
+Console.WriteLine($"{num1} {operation} {num2} = {result}");
