@@ -19,3 +19,10 @@ while (!checkParse1 || !checkParse2)
 
 var sum = num1 + num2;
 Console.WriteLine($"{num1} + {num2} = {sum}");
+
+List<int> ints = new List<int>() { 1, 2, 3, 42, 100, 200, 23 };
+
+foreach (var x in ints)
+{
+    Console.Write(x);
+}
