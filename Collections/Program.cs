@@ -67,6 +67,4 @@ for (int i = 0; i < intList.Count; i++)
 {
     Console.WriteLine(intList[i]);
 }
-
-intList.Any
 #endregion

@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariablenUndDatentypen", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{6C3B210B-61F3-4C2F-A6FA-98817648E0C2}"
 EndProject
+<<<<<<< Updated upstream
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projektstruktur", "Projektstruktur\Projektstruktur.csproj", "{8767A41F-5656-4CAC-9A25-FE62B22F5E00}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-cli", "dotnet-cli\dotnet-cli.csproj", "{A4EC43AE-D74D-4CB2-B2E2-D2CC5FD0C260}"
+>>>>>>> Stashed changes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +57,17 @@ Global
 		{6C3B210B-61F3-4C2F-A6FA-98817648E0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C3B210B-61F3-4C2F-A6FA-98817648E0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C3B210B-61F3-4C2F-A6FA-98817648E0C2}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< Updated upstream
 		{8767A41F-5656-4CAC-9A25-FE62B22F5E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8767A41F-5656-4CAC-9A25-FE62B22F5E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8767A41F-5656-4CAC-9A25-FE62B22F5E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8767A41F-5656-4CAC-9A25-FE62B22F5E00}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{A4EC43AE-D74D-4CB2-B2E2-D2CC5FD0C260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EC43AE-D74D-4CB2-B2E2-D2CC5FD0C260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EC43AE-D74D-4CB2-B2E2-D2CC5FD0C260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EC43AE-D74D-4CB2-B2E2-D2CC5FD0C260}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
