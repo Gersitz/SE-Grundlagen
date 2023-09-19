@@ -39,4 +39,4 @@ namespace TestAlgorithms
             Assert.Equal(-1, CardAlgorithms.FindCardLocation(cards, query));
         }
     }
-} aaaaaa
+}
