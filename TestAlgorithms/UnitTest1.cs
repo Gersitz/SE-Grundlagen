@@ -43,7 +43,7 @@ namespace TestAlgorithms
         public void TestLocateCard_BigArray()
         {
             Random rand = new Random();
-            int[] cards = new int[1_000_000];
+            int[] cards = new int[10_000_000];
 
             for (int i = 0; i < cards.Length; i++)
             {
@@ -58,6 +58,27 @@ namespace TestAlgorithms
             var expectedPosition = cards.ToList().FindIndex(x => x == query);
 
             Assert.Equal(expectedPosition, CardAlgorithms.FindCardLocation(cards, query));
+        }
+
+        [Fact]
+        public void TestLocateCard_BigArrayBinarySearch()
+        {
+            Random rand = new Random();
+            int[] cards = new int[10_000_000];
+
+            for (int i = 0; i < cards.Length; i++)
+            {
+                cards[i] = rand.Next();
+            }
+
+            cards[1336] = 420;
+            Array.Sort(cards);
+
+            int query = 420;
+
+            var expectedPosition = cards.ToList().FindIndex(x => x == query);
+
+            Assert.Equal(expectedPosition, CardAlgorithms.BinaryFindCardLocation(cards, query));
         }
     }
 }
