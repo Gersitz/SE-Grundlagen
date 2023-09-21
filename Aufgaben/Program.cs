@@ -34,3 +34,15 @@
  *                 Setze prescriptionColor gleich blau
  * Gebe prescriptionColor zurück
  */
+
+/*
+ * Parameter: Variable n
+ * Setze Variable i auf den Wert von n
+ * Setze Variable ergebnis auf den Wert von n
+ * 
+ * Schleife bis i gleich 1:
+ *     Dekrementiere i um 1
+ *     Setze Wert von ergebnis auf Wert von ergebnis mal i
+ *     
+ * Gebe ergebnis zurück
+ */
