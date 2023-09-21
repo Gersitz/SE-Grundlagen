@@ -3,13 +3,14 @@
  * Frage Nutzer nach Eingabe von password
  * 
  * Falls name und password korrekt:
- *     Wahr: Sende onetimepassword
- *     Falsch: Erneute Eingabeaufforderung
- *     
- * Frage Nutzer nach Eingabe von onetimepassword
- * Falls onetimepassword korrekt:
- *     Wahr: Sende Nachricht "Willkommen"
- *     Falsch: Erneute Eingabeaufforderung
+ *     Wahr:
+ *         Sende onetimepassword
+ *         Frage Nutzer nach Eingabe von onetimepassword
+ *         Falls onetimepassword korrekt: 
+ *             Wahr: Sende Nachricht "Willkommen"
+ *             Falsch: Erneute Eingabeaufforderung
+ *     Falsch:
+ *         Erneute Eingabeaufforderung
  */
 
 /*
@@ -18,15 +19,18 @@
  * Frage Nutzer nach medType
  *
  * 
- * Falls insuranceType gesetzlich:
- *     Falls medType verschreibungspflichtig:
- *         Gebe prescriptionColor rosa zurück
- *     Ansonsten:
- *          Gebe prescriptionColor grün zurück
- *          
- * Falls insuranceType privat:
- *     Falls medType verschreibungspflichtig:
- *         Gebe prescriptionColor gelb zurück
- *     Ansonsten:
- *         Gebe prescriptionColor blau zurück
+ * Prüfe insuranceType gleich gesetzlich:
+ *     Wahr:
+ *         Prüfe medType gleich "verschreibungspflichtig":
+ *             Wahr:
+ *                 Setze prescriptionColor gleich rosa
+ *             Falsch:
+ *                 Setze prescriptionColor gleich grün
+ *     Falsch:
+ *         Prüfe medType gleich "verschreibungspflichtig":
+ *             Wahr:
+ *                 Setze prescriptonColor gleich gelb
+ *             Falsch:
+ *                 Setze prescriptionColor gleich blau
+ * Gebe prescriptionColor zurück
  */
