@@ -18,13 +18,13 @@ public static class MathAlgorithms
 
     public static int FactorialFor(int n)
     {
-        int number = 1;
+        int result = 1;
 
         for (int i = 1; i <= n; i++)
         {
-            number *= i;
+            result *= i;
         }
-        return number;
+        return result;
     }
 }
 
