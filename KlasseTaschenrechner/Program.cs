@@ -13,6 +13,12 @@
             Console.WriteLine(result);
             Console.WriteLine(result2);
             Console.WriteLine(factorialResult);
+
+            Circle myCircle = new Circle(10);
+            myCircle.Radius = 20;
+            Console.WriteLine("myCircle Area:\t" + myCircle.Area());
+            Console.WriteLine("myCircle Diameter:\t" + myCircle.Diameter());
+            Console.WriteLine("myCircle Circumference:\t" + myCircle.Circumference());
         }
     }
 }
