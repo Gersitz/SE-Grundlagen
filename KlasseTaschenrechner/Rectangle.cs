@@ -1,5 +1,5 @@
 ﻿namespace KlasseTaschenrechner;
-    public class Rectangle
+public class Rectangle
 {
     public int Length;
     public int Width;

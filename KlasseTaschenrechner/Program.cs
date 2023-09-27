@@ -19,6 +19,9 @@
             Console.WriteLine("myCircle Area:\t" + myCircle.Area());
             Console.WriteLine("myCircle Diameter:\t" + myCircle.Diameter());
             Console.WriteLine("myCircle Circumference:\t" + myCircle.Circumference());
+
+            Rectangle myRectangle = new Rectangle(19, 23);
+            Console.WriteLine("myRectangle Circumference:\t" + myRectangle.Circumference());
         }
     }
 }

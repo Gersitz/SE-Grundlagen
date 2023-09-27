@@ -29,9 +29,26 @@ internal class Program
 
         jerry = new Cat("minka", 12, "silver");
         Console.WriteLine(jerry);
+
         jerry.Miau();
         Cat.Schnurren();
+
         Console.WriteLine(jerry);
         Console.ReadLine();
+
+        // fields vs properties
+        Dog myDog = new Dog(0, "fifi", "white",3 );
+        var myDog2 = new Dog(1, "susi", "black",5 );
+        Dog myDog3 = new(2, "maria", "golden", 10);
+        myDog.Bark();
+
+        myDog.name = "fritz";
+        myDog.Id = 1;
+        Console.WriteLine(myDog);
+
+        Console.WriteLine("**********");
+        Console.WriteLine(myDog.Color);
+        myDog.Color = "yellow";
+        Console.WriteLine(myDog.Color);
     }
 }
