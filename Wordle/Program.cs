@@ -10,57 +10,65 @@
  *             Prüfe Buchstabe aus guess gleich Buchstabe in solutionWord:
  *                 Wahr: 
  */
-using System.Runtime.CompilerServices;
+var projectPath = Directory.GetCurrentDirectory();
+var csvPath = Path.GetRelativePath(projectPath, @"..\..\..\words\valid_solutions.csv");
+var solutionWordList = GetSolutionFromFile(csvPath);
 
-var solutionWordList = new List<string>();
-using (var reader = new StreamReader(@"C:\\Users\\KevinGersitz\\Documents\\Anwendungsentwicklung\\Source\\SE-Grundlagen\\Wordle\\words\\valid_solutions.csv"))
-{
-    while (reader.EndOfStream == false)
-    {
-        var line = reader.ReadLine();
-        solutionWordList.Add(line);
-    }
-}
-
-Random rng = new Random();
-var nextSolutionIndex = rng.Next(0, solutionWordList.Count);
-
-var solutionWord = solutionWordList[nextSolutionIndex];
-solutionWord = solutionWord.ToUpper();
+var solutionWord = PickSolution(solutionWordList);
 
 string guess;
-
 while (true)
 {
-    Console.WriteLine("Guess the word");
-    guess = Console.ReadLine();
-    guess = guess.ToUpper();
-    if (guess.Length != 5) continue;
-
-    // foreach (char c in guess)
-    // {
-    //     if (solutionWord.Contains(c))
-    //         Console.BackgroundColor = ConsoleColor.Yellow;
-    //     if (/*...*/)
-    //         Console.BackgroundColor = ConsoleColor.Green;
-    //     Console.WriteLine($"{c}");
-    // }
-
-    /* ToDo:
-     * Groß- und Kleinschreibung
-     */
+    guess = GetGuess("Guess the 5-letter-word");
 
     Console.ForegroundColor = ConsoleColor.Black;
     for (int i = 0; i < guess.Length; i++)
     {
         Console.BackgroundColor = ConsoleColor.White;
         if (solutionWord.Contains(guess[i]))
-            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
         if (solutionWord[i] == guess[i])
             Console.BackgroundColor = ConsoleColor.Green;
         Console.Write($"{guess[i]}");
     }
     Console.ForegroundColor = ConsoleColor.White;
     Console.BackgroundColor = ConsoleColor.Black;
+    if (solutionWord == guess)
+    {
+        Console.WriteLine("\nYou got it!");
+    }
     Console.WriteLine();
+}
+
+List<string> GetSolutionFromFile(string path)
+{
+    var solutions = new List<string>();
+    using (var reader = new StreamReader(path))
+    {
+        while (reader.EndOfStream == false)
+        {
+            var line = reader.ReadLine();
+            solutions.Add(line);
+        }
+    }
+    return solutions;
+}
+
+string PickSolution(List<string> solutionWordList)
+{
+    Random rng = new Random();
+    var nextSolutionIndex = rng.Next(0, solutionWordList.Count);
+
+    var solutionWord = solutionWordList[nextSolutionIndex];
+    solutionWord = solutionWord.ToUpper();
+    return solutionWord;
+}
+
+string GetGuess(string prompt)
+{
+    Console.WriteLine(prompt);
+    guess = Console.ReadLine();
+    guess = guess.ToUpper();
+    if (guess.Length != 5) GetGuess(prompt);
+    return guess;
 }
