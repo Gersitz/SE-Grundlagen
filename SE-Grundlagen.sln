@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KlasseTaschenrechner", "Kla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrundlagenOOP", "GrundlagenOOP\GrundlagenOOP.csproj", "{B3D3E98E-3929-4949-B6BF-B1A5F0BD4477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordle", "Wordle\Wordle.csproj", "{33C5932B-8D3D-4CC4-B9D0-72548C0D815C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wordle", "Wordle\Wordle.csproj", "{33C5932B-8D3D-4CC4-B9D0-72548C0D815C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp", "QuizApp\QuizApp.csproj", "{ED12748D-6C27-4DDE-9059-27A68B2BAC84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{33C5932B-8D3D-4CC4-B9D0-72548C0D815C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33C5932B-8D3D-4CC4-B9D0-72548C0D815C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33C5932B-8D3D-4CC4-B9D0-72548C0D815C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED12748D-6C27-4DDE-9059-27A68B2BAC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED12748D-6C27-4DDE-9059-27A68B2BAC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED12748D-6C27-4DDE-9059-27A68B2BAC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED12748D-6C27-4DDE-9059-27A68B2BAC84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
