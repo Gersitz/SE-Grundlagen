@@ -4,8 +4,8 @@ public static class Classes
     public class Warrior : Character
     {
         public int Rage { get; private set; }
-        private const int MaxRage = 100;
-        public Warrior(string name, string gender) : base(name, gender, level: 1, health: 200, attack: 35, magicattack: 10, defense: 10, magicdefense: 5, speed: 100, dodge: 2)
+        public const int MaxRage = 100;
+        public Warrior(string name, string gender) : base(name, gender, level: 1, health: 200, attack: 35, magicattack: 10, defense: 10, magicdefense: 5, speed: 100, dodge: 2, experience: 0, gold: 0)
         {
             Rage = 0;
         }
@@ -71,7 +71,7 @@ public static class Classes
     public class Mage : Character
     {
         public int Mana { get; set; }
-        public Mage(string name, string gender) : base(name, gender, level: 1, health: 100, attack: 10, magicattack: 35, defense: 5, magicdefense: 10, speed: 100, dodge: 2)
+        public Mage(string name, string gender) : base(name, gender, level: 1, health: 100, attack: 10, magicattack: 35, defense: 5, magicdefense: 10, speed: 100, dodge: 2, experience: 0, gold: 0)
         {
             Mana = 0;
         }
@@ -97,7 +97,7 @@ public static class Classes
             base.Defend(finalDefense);
             return finalDefense;
         }
-        private void CastMagicShield()
+        public void CastMagicShield()
         {
             if (Mana >= 30)
             {
@@ -133,7 +133,7 @@ public static class Classes
             }
 
         }
-        private void ApplyBurn(Character target)
+        public void ApplyBurn(Character target)
         {
             int damage = (int)(target.Health * 0.05);
             target.Health -= damage;
@@ -146,12 +146,12 @@ public static class Classes
     {
         public bool activeStealth = false;
         public int Shadowforce { get; set; }
-        public Rogue(string name, string gender) : base(name, gender, level: 1, health: 150, attack: 20, magicattack: 10, defense: 10, magicdefense: 5, speed: 120, dodge: 2)
+        public Rogue(string name, string gender) : base(name, gender, level: 1, health: 150, attack: 20, magicattack: 10, defense: 10, magicdefense: 5, speed: 120, dodge: 2, experience: 0, gold: 0)
         {
             Shadowforce = 0;
         }
 
-        public override void Defend(int damage)
+        public override int Defend(int damage)
         {
             if (activeStealth)
             {
@@ -167,6 +167,7 @@ public static class Classes
                     activeStealth = false;
                 }
             }
+            return damage;
         }
         public override int CalculateDamage(Character target)
         {

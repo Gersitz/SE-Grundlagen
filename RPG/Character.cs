@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Security.Cryptography.X509Certificates;
-
-namespace RPG;
+﻿namespace RPG;
 public class Character
 {
     public string Name { get; set; }
@@ -14,8 +11,10 @@ public class Character
     public int MagicDefense { get; set; }
     public int Speed { get; set; }
     public int Dodge { get; set; }
+    public int Experience { get; set; }
+    public int Gold { get; set; }
 
-    public Character(string name, string gender, int level, int health, int attack, int magicattack, int defense, int magicdefense, int speed, int dodge)
+    public Character(string name, string gender, int level, int health, int attack, int magicattack, int defense, int magicdefense, int speed, int dodge, int experience, int gold)
     {
         Name = name;
         Gender = gender;
@@ -27,6 +26,8 @@ public class Character
         MagicDefense = magicdefense;
         Speed = speed;
         Dodge = dodge;
+        Experience = experience;
+        Gold = gold;
     }
     public void Attack(Character target, string skillType, string damageCalc, int dmg, double multiplier)
     {
@@ -104,7 +105,7 @@ public class Character
         return damage > 0 ? damage : 0;
 
     }
-    protected string MissingRessources(string ressource)
+    public string MissingRessources(string ressource)
     {
         string prompt = $"Not enough {ressource}!";
         return prompt;
