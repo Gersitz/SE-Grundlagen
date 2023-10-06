@@ -4,13 +4,47 @@ public static class Classes
     public class Warrior : Character
     {
         public int Rage { get; private set; }
+        private const int MaxRage = 100;
         public Warrior(string name, string gender) : base(name, gender, level: 1, health: 200, attack: 35, magicattack: 10, defense: 10, magicdefense: 5, speed: 100, dodge: 2)
         {
             Rage = 0;
         }
+        public override int CalculateDamage(Character target)
+        {
+            int baseDamage = base.CalculateDamage(target);
+            if (Rage > MaxRage)
+            {
+                Rage = MaxRage;
+            }
+            double rageMultiplier = 1.0 + (Rage * 0.005);
+            int calculatedDamage = (int)((baseDamage * rageMultiplier) - target.Defense);
+            Console.WriteLine($"{Name} attacked {target.Name}!");
+            return calculatedDamage;
+        }
+        public override int CalculateSkillDamage(Character target, int dmg)
+        {
+            int baseDamage = base.CalculateSkillDamage(target, dmg);
+            if (Rage > MaxRage)
+            {
+                Rage = MaxRage;
+            }
+            double rageMultiplier = 1.0 + (Rage * 0.005);
+            int calculatedDamage = (int)(((baseDamage + dmg) * rageMultiplier) - target.Defense);
+            return calculatedDamage;
+        }
+        public override int CalculateSkillDamagePercent(Character target, double multiplier)
+        {
+            int baseDamage = base.CalculateSkillDamagePercent(target, multiplier);
+            if (Rage > MaxRage)
+            {
+                Rage = MaxRage;
+            }
+            double rageMultiplier = 1.0 + (Rage * 0.005);
+            int calculatedDamage = (int)(baseDamage * rageMultiplier * multiplier - target.Defense);
+            return calculatedDamage;
+        }
         public void BasicAttack(Character target)
         {
-            Console.WriteLine($"{Name} casts attacks {target.Name}!");
             Attack(target, "basic", "", 0, 1.0);
             Rage += 5;
         }
@@ -41,25 +75,61 @@ public static class Classes
         {
             Mana = 0;
         }
+
+        public override int CalculateMagicDamage(Character target, int dmg)
+        {
+            int baseDamage = base.CalculateSkillDamage(target, dmg);
+            double mAttackMultiplier = 1.0 + (Mana * 0.001);
+            int calculatedDamage = (int)(((baseDamage + dmg) * mAttackMultiplier) - target.Defense);
+            return calculatedDamage;
+        }
+        public override int CalculateMagicDamagePercent(Character target, double multiplier)
+        {
+            int baseDamage = base.CalculateMagicDamagePercent(target, multiplier);
+            double mAttackMultiplier = 1.0 + (Mana * 0.005);
+            int calculatedDamage = (int)(baseDamage * mAttackMultiplier * multiplier - target.Defense);
+            return calculatedDamage;
+        }
+        public override int Defend(int damage)
+        {
+            double mDefenseMultiplier = 1.0 + (Mana * 0.002);
+            int finalDefense = (int)(base.Defend(damage) * mDefenseMultiplier);
+            base.Defend(finalDefense);
+            return finalDefense;
+        }
         private void CastMagicShield()
         {
+            if (Mana >= 30)
+            {
             int defenseChange = (int)(Defense * 0.1);
             int magicDefenseChange = (int)(MagicDefense * 0.25);
             Defense += defenseChange;
             MagicDefense += magicDefenseChange;
             Mana -= 30;
             Console.WriteLine($"{Name} casts a magical shield!\nDefense: + {defenseChange}\nMagic Defense: + {magicDefenseChange}");
+            }
+            else
+            {
+                MissingRessources("Mana");
+            }
         }
         public void CastFireball(Character target)
         {
-            Console.WriteLine($"{Name} casts Fireball on {target.Name}!");
-            Attack(target, "magic", "multiplicative", 0, 1.5);
-            Mana -= 15;
-
-            if (RandomChance(0.10))
+            if (Mana >= 15)
             {
-                ApplyBurn(target);
-                Console.WriteLine($"{target} started to burn!");
+                Console.WriteLine($"{Name} casts Fireball on {target.Name}!");
+                Attack(target, "magic", "multiplicative", 0, 1.5);
+                Mana -= 15;
+
+                if (RandomChance(0.10))
+                {
+                    ApplyBurn(target);
+                    Console.WriteLine($"{target} started to burn!");
+                }
+            }
+            else
+            {
+                MissingRessources("Mana");
             }
 
         }
@@ -80,20 +150,7 @@ public static class Classes
         {
             Shadowforce = 0;
         }
-        public override void Attack(Character target, string skillType, string damageCalc, int dmg, int multiplier)
-        {
-            if (activeStealth)
-            {
-                AttackPower *= (int)1.3;
-                int damage = CalculateDamage(target);
-                activeStealth = false;
-                Console.WriteLine($"{Name} attacked {target.Name} out of the shadows! Stealth ended.\nDamage dealt: {damage}");
-            }
-            else
-            {
-                base.Attack(target, skillType, damageCalc, dmg, multiplier);
-            }
-        }
+
         public override void Defend(int damage)
         {
             if (activeStealth)
@@ -101,6 +158,7 @@ public static class Classes
                 if (RandomChance(0.75))
                 {
                     Console.WriteLine($"{Name} dodged the attack!");
+                    damage = 0;
                 }
                 else
                 {
@@ -110,6 +168,41 @@ public static class Classes
                 }
             }
         }
+        public override int CalculateDamage(Character target)
+        {
+            int baseDamage = base.CalculateDamage(target);
+
+            if (activeStealth)
+            {
+                int damage = (int)(AttackPower * 1.2) - target.Defense;
+                Console.WriteLine($"{Name} attacked {target.Name}!\n{Name} left the Stealth stance.\nDamage dealt: {damage}");
+                return damage > 0 ? damage : 0;
+            }
+            return baseDamage;
+        }
+        public override int CalculateSkillDamage(Character target, int dmg)
+        {
+            int baseDamage = base.CalculateSkillDamage(target, dmg);
+
+            if (activeStealth)
+            {
+                int damage = (int)((AttackPower + dmg) * 1.2) - target.Defense;
+                return damage > 0 ? damage : 0;
+            }
+            return baseDamage;
+        }
+        public override int CalculateSkillDamagePercent(Character target, double multiplier)
+        {
+            int baseDamage = base.CalculateSkillDamagePercent(target, multiplier);
+
+            if (activeStealth)
+            {
+                int damage = (int)(AttackPower * 1.2) - target.Defense;
+                return damage > 0 ? damage : 0;
+            }
+            return baseDamage;
+        }
+
         public void CastStealth()
         {
             if (Shadowforce >= 45)
@@ -128,8 +221,7 @@ public static class Classes
             if (activeStealth)
             {
                 int CurrentAttackPower = AttackPower;
-                AttackPower = (int)(AttackPower * 1.5);
-                int damage = CalculateDamage(target);
+                CalculateSkillDamagePercent(target, 1.5);
                 AttackPower = CurrentAttackPower;
             }
             else

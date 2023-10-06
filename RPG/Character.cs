@@ -4,7 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace RPG;
 public class Character
 {
-    public string Name { get; protected set; }
+    public string Name { get; set; }
     public string Gender { get; set; }
     public int Level { get; set; }
     public int Health { get; set; }
@@ -28,7 +28,7 @@ public class Character
         Speed = speed;
         Dodge = dodge;
     }
-    public virtual void Attack(Character target, string skillType, string damageCalc, int dmg, double multiplier)
+    public void Attack(Character target, string skillType, string damageCalc, int dmg, double multiplier)
     {
         if (skillType == "basic")
         {
@@ -67,38 +67,40 @@ public class Character
             }
         }
     }
-    public virtual void Defend(int damage)
+    public virtual int Defend(int damage)
     {
         Health -= damage;
         if (Health < 0)
         {
             Health = 0;
         }
+        return damage;
     }
-    protected int CalculateDamage(Character target)
+    public virtual int CalculateDamage(Character target)
     {
         int damage = AttackPower - target.Defense;
+        Console.WriteLine($"{Name} attacked {target.Name}!");
         return damage > 0 ? damage : 0;
 
     }
-    protected int CalculateSkillDamage(Character target, int dmg)
+    public virtual int CalculateSkillDamage(Character target, int dmg)
     {
         int damage = AttackPower + dmg - target.Defense;
         return damage > 0 ? damage : 0;
     }
-    protected int CalculateSkillDamagePercent(Character target, double multiplier)
+    public virtual int CalculateSkillDamagePercent(Character target, double multiplier)
     {
-        int damage = (int)(AttackPower * multiplier);
+        int damage = (int)(AttackPower * multiplier) - target.Defense;
         return damage > 0 ? damage : 0;
     }
-    protected int CalculateMagicDamage(Character target, int dmg)
+    public virtual int CalculateMagicDamage(Character target, int dmg)
     {
         int damage = MagicAttackPower + dmg - target.MagicDefense;
         return damage > 0 ? damage : 0;
     }
-    protected int CalculateMagicDamagePercent(Character target, double multiplier)
+    public virtual int CalculateMagicDamagePercent(Character target, double multiplier)
     {
-        int damage = (int)(MagicAttackPower * multiplier);
+        int damage = (int)(MagicAttackPower * multiplier) - target.MagicDefense;
         return damage > 0 ? damage : 0;
 
     }
