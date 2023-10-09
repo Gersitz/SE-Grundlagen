@@ -9,6 +9,10 @@ public static class Classes
         {
             Rage = 0;
         }
+
+        public List<string> WarriorSkills { get; } = new List<string>();
+
+
         public override int CalculateDamage(Character target)
         {
             int baseDamage = base.CalculateDamage(target);
@@ -146,7 +150,7 @@ public static class Classes
     {
         public bool activeStealth = false;
         public int Shadowforce { get; set; }
-        public Rogue(string name, string gender) : base(name, gender, level: 1, health: 150, attack: 20, magicattack: 10, defense: 10, magicdefense: 5, speed: 120, dodge: 2, experience: 0, gold: 0)
+        public Rogue(string name, string gender) : base(name, gender, playerClass: "Rogue", level: 1, health: 150, attack: 20, magicattack: 10, defense: 10, magicdefense: 5, speed: 120, dodge: 2, experience: 0, gold: 0)
         {
             Shadowforce = 0;
         }

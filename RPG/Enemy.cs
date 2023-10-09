@@ -1,11 +1,12 @@
-﻿using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
+﻿namespace RPG;
 
-namespace RPG;
-
-public class Enemy
+public class Enemy : Character
 { 
-    public class ForestSpider : Character
+    public Enemy(string name, string gender, int level, int health, int attack, int magicattack, int defense, int magicdefense, int speed, int dodge, int experience, int gold) : base(name, gender, level, health, attack, magicattack, defense, magicdefense, speed, dodge, experience, gold)
+    {
+
+    }
+    public class ForestSpider : Enemy
     {
         public ForestSpider(string name) : base(name, gender: "None", level: 1, health: 40, attack: 5, magicattack: 2, defense: 5, magicdefense: 2, speed: 105, dodge: 2, experience: 2, gold: 1)
         {

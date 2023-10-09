@@ -72,10 +72,11 @@ internal class Program
                 Console.WriteLine("Invalid input. Please enter the number corresponding to your desired class.");
             }
         }
-
         Console.WriteLine("\nCharacter created!");
         Console.WriteLine("Name: " + playerName);
         Console.WriteLine("Gender: " + gender);
         Console.WriteLine("Class: " + playerClass);
+
+        Enemy.ForestSpider spider = new Enemy.ForestSpider("Forest Spider");
     }
 }

@@ -3,6 +3,7 @@ public class Character
 {
     public string Name { get; set; }
     public string Gender { get; set; }
+    public string Class { get; set; }
     public int Level { get; set; }
     public int Health { get; set; }
     public int AttackPower { get; set; }
@@ -10,14 +11,17 @@ public class Character
     public int Defense { get; set; }
     public int MagicDefense { get; set; }
     public int Speed { get; set; }
+    public int SpeedCounter { get; set; } = 0;
     public int Dodge { get; set; }
     public int Experience { get; set; }
     public int Gold { get; set; }
+    public bool IsAlive { get; set; } = true;
 
-    public Character(string name, string gender, int level, int health, int attack, int magicattack, int defense, int magicdefense, int speed, int dodge, int experience, int gold)
+    public Character(string name, string gender, string playerClass, int level, int health, int attack, int magicattack, int defense, int magicdefense, int speed, int dodge, int experience, int gold)
     {
         Name = name;
         Gender = gender;
+        Class = playerClass;
         Level = level;
         Health = health;
         AttackPower = attack;
@@ -28,6 +32,16 @@ public class Character
         Dodge = dodge;
         Experience = experience;
         Gold = gold;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            IsAlive = false;
+        }
     }
     public void Attack(Character target, string skillType, string damageCalc, int dmg, double multiplier)
     {
@@ -104,6 +118,10 @@ public class Character
         int damage = (int)(MagicAttackPower * multiplier) - target.MagicDefense;
         return damage > 0 ? damage : 0;
 
+    }
+    public void IncrementSpeedCounter()
+    {
+        SpeedCounter += Speed;
     }
     public string MissingRessources(string ressource)
     {
