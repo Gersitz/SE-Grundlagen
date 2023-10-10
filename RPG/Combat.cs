@@ -114,24 +114,24 @@ public class Combat
                     }
                 }
 
-                string selectedSkill = player.Skills[skillChoice - 1];
+                string selectedSkill = player.Skills[skillChoice - 1].Name;
 
                 break;
             case CombatAction.UseItem:
                 // Inventar öffnen
                 break;
             case CombatAction.Wait:
-                Console.WriteLine($"{currentCharacter.Name} decided to wait this turn out.");
+                Console.WriteLine($"{player.Name} decided to wait this turn out.");
                 break;
             case CombatAction.RunAway:
                 // Kampf beenden bzw. Chance auf Flucht
-                Console.WriteLine($"{currentCharacter.Name} attempted to run away!");
+                Console.WriteLine($"{player.Name} attempted to run away!");
                 break;
             case CombatAction.Unknown:
-                Console.WriteLine($"{currentCharacter.Name} chose an unknown action.");
+                Console.WriteLine($"{player.Name} chose an unknown action.");
                 break;
             default:
-                Console.WriteLine($"{currentCharacter.Name} chose an unexpected action.");
+                Console.WriteLine($"{player.Name} chose an unexpected action.");
                 break;
         }
     }

@@ -10,7 +10,7 @@ public class Player : Character
 
     public void AddSkill(Skill skillName)
     {
-        Skills.Add(skillName)
+        Skills.Add(skillName);
     }
 
     public void DisplaySkills()
