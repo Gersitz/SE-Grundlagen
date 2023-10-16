@@ -1,13 +1,12 @@
 ﻿namespace Project_RPG;
 
-internal class Player : Character
+public class Player : Character
 {
-    public Player (string name, int health, int attackPower, int defense)
+    public int Gold { get; set; }
+
+    public Player (string name, int level, int health, int attackPower, int magicAttackPower, int defense, int magicDefense, int speed, int dodge, int gold) : base(name, level, health, attackPower, magicAttackPower, defense, magicDefense, speed, dodge)
     {
-        Name = name;
-        Health = health;
-        AttackPower = attackPower;
-        Defense = defense;
+        Gold = gold;
     }
 
     public int AttackEnemy()
@@ -19,5 +18,10 @@ internal class Player : Character
     {
         Health -= damage;
         return Health;
+    }
+
+    public void AddGold(int amount)
+    {
+        Gold += amount;
     }
 }

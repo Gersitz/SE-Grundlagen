@@ -37,7 +37,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPG", "RPG\RPG.csproj", "{8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kapselungen_Vererbungen", "Kapselungen_Vererbungen\Kapselungen_Vererbungen.csproj", "{964511EE-EE92-47F4-BDEB-3C4043FC9E4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_RPG", "Project_RPG\Project_RPG.csproj", "{3CC60DA4-1857-46BF-8967-F9C2290CFB7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_RPG", "Project_RPG\Project_RPG.csproj", "{3CC60DA4-1857-46BF-8967-F9C2290CFB7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{03AC802B-7521-4264-8257-FD9B519E3F20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstrakteKlasse", "AbstrakteKlasse\AbstrakteKlasse.csproj", "{F1B2A348-2BD9-44AE-A94A-9E1528D36AAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +121,14 @@ Global
 		{3CC60DA4-1857-46BF-8967-F9C2290CFB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC60DA4-1857-46BF-8967-F9C2290CFB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC60DA4-1857-46BF-8967-F9C2290CFB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03AC802B-7521-4264-8257-FD9B519E3F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03AC802B-7521-4264-8257-FD9B519E3F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03AC802B-7521-4264-8257-FD9B519E3F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03AC802B-7521-4264-8257-FD9B519E3F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B2A348-2BD9-44AE-A94A-9E1528D36AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B2A348-2BD9-44AE-A94A-9E1528D36AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B2A348-2BD9-44AE-A94A-9E1528D36AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B2A348-2BD9-44AE-A94A-9E1528D36AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
